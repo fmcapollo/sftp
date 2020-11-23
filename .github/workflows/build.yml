@@ -25,16 +25,4 @@ jobs:
               run: |
                 docker build . -t fmcappdev.azurecr.io/sftp:latest
                 docker push fmcappdev.azurecr.io/sftp:latest
-            - name: login to PROD azure registry
-              if: github.ref == 'refs/heads/master'
-              uses: azure/docker-login@v1
-              with:
-                  login-server: pestdetectioncr.azurecr.io
-                  username: ${{ secrets.PROD_REGISTRY_USERNAME }}
-                  password: ${{ secrets.PROD_REGISTRY_PASSWORD }}
-            - name: build & push PROD container
-              if: github.ref == 'refs/heads/master'
-              run: |
-                docker build . -t pestdetectioncr.azurecr.io/sftp:latest
-                docker push pestdetectioncr.azurecr.io/sftp:latest
 

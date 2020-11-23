@@ -99,6 +99,18 @@ docker run \
 Tip: you can use [atmoz/makepasswd](https://hub.docker.com/r/atmoz/makepasswd/) to generate encrypted passwords:  
 `echo -n "your-password" | docker run -i --rm atmoz/makepasswd --crypt-md5 --clearfrom=-`
 
+## Filter IP's and User's
+
+Maintain Allowed Users and Allowed IP's in Environment variable: SFTP_ALLOWED_IPS & SFTP_ALLOWED_USERS to filter
+IP's & Users to access sftp server.
+
+```
+docker run -d \
+-e SFTP_ALLOWED_IPS=$SFTP_ALLOWED_IPS \
+-e SFTP_ALLOWED_USERS=$SFTP_ALLOWED_USERS \
+-p 8080:22 sftp foo:pass:::upload    
+```
+
 ## Logging in with SSH keys
 
 Mount public keys in the user's `.ssh/keys/` directory. All keys are automatically appended to `.ssh/authorized_keys` (you can't mount this file directly, because OpenSSH requires limited file permissions). In this example, we do not provide any password, so the user `foo` can only login with his SSH key.

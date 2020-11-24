@@ -101,7 +101,7 @@ Tip: you can use [atmoz/makepasswd](https://hub.docker.com/r/atmoz/makepasswd/) 
 
 ## Filter IP's and User's
 
-Maintain Allowed Users and Allowed IP's in Environment variable: SFTP_ALLOWED_IPS & SFTP_ALLOWED_USERS to filter
+Maintain Allowed Users and Allowed IP's in Environment variable:SFTP_ALLOWED_IPS & SFTP_ALLOWED_USERS to filter
 IP's & Users to access sftp server.
 
 ```

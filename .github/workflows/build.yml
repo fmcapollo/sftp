@@ -23,6 +23,6 @@ jobs:
             - name: build & push DEV container
               if: github.ref == 'refs/heads/dev'
               run: |
-                docker build . -t fmcappdev.azurecr.io/sftp:latest
-                docker push fmcappdev.azurecr.io/sftp:latest
+                docker build . -t fmcappdev.azurecr.io/sftp_fmc:latest
+                docker push fmcappdev.azurecr.io/sftp_fmc:latest
 

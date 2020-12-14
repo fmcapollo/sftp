@@ -14,16 +14,12 @@ userConfFinalPath="/var/run/sftp/users.conf"
 
 echo 'PermitEmptyPasswords no' >> /etc/ssh/sshd_config
 echo "AllowUsers ${SFTP_ALLOWED_USERS}" >> /etc/ssh/sshd_config
-
 if [ -z "$SFTP_ALLOWED_IPS" ] && [ -z "$SFTP_ALLOWED_USERS" ]; then
     log "ERROR:  Please set up SFTP_ALLOWED_IPS & SFTP_ALLOWED_USERS values in Environment"   
     exit 3
 else 
-    echo "Match Address *, !${SFTP_ALLOWED_IPS}" >> /etc/ssh/sshd_config   
-    echo '   PasswordAuthentication no' >> /etc/ssh/sshd_config
-    echo '   AuthenticationMethods publickey' >> /etc/ssh/sshd_config
-    echo '   PubkeyAuthentication yes' >> /etc/ssh/sshd_config
-    echo '   X11Forwarding no' >> /etc/ssh/sshd_config
+    echo "Match Address *,${SFTP_ALLOWED_IPS}" >> /etc/ssh/sshd_config   
+    echo '    PasswordAuthentication no' >> /etc/ssh/sshd_config
     echo "INFO: Allowed IP's: ${SFTP_ALLOWED_IPS} & Allowed Users:${SFTP_ALLOWED_USERS} are Set"
 fi
 
@@ -112,3 +108,4 @@ else
     log "Executing $*"
     exec "$@"
 fi
+
